@@ -77,6 +77,8 @@ int specifier_handler(char specifier, va_list args_list)
 				bytes_printed += print_string(args_list);
 				break;
 			}
+		default:
+			break;
 	}
 	return (bytes_printed);
 }
