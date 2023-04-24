@@ -40,7 +40,7 @@ int printchar(va_list args_list)
  * @args_list: argument list
  * Return: bytes printed
  */
-int print_digits(va_list, args_list)
+int print_digits(va_list args_list)
 {
 	int n, bytes_printed = 0;
 
