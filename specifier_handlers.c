@@ -34,3 +34,19 @@ int printchar(va_list args_list)
 	bytes_written++;
 	return (bytes_written);
 }
+
+/**
+ * print_digits - prints digits
+ * @args_list: argument list
+ * Return: bytes printed
+ */
+int print_digits(va_list, args_list)
+{
+	int n, bytes_printed = 0;
+
+	n = va_arg(args_list, int);
+
+	write(1, &n, 1);
+	bytes_printed++;
+	return (bytes_printed);
+}
