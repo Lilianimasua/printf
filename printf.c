@@ -13,7 +13,8 @@ int _printf(const char *format, ...)
 	int bytes_printed = 0;
 	char specifier;
 	char c;
-	va_list args_list;
+	va_list args_list; /* va_list args args_list*/
+	/*va_copy(args_list, args)*/
 
 	va_start(args_list, format);
 
@@ -37,6 +38,7 @@ int _printf(const char *format, ...)
 		}
 		format++;
 	}
+	va_end(args);
 	va_end(args_list);
 	return (bytes_printed);
 }
