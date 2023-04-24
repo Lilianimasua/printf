@@ -17,6 +17,7 @@ int _printf(const char *format, ...)
 	/*va_copy(args_list, args)*/
 
 	va_start(args_list, format);
+	va_copy(args_list, args);
 
 	if (format == NULL)
 		return (0);
@@ -38,7 +39,6 @@ int _printf(const char *format, ...)
 		}
 		format++;
 	}
-	va_copy(args_list, args) /*added va_copy here*/
 
 	va_end(args);
 	va_end(args_list);
