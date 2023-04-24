@@ -40,30 +40,30 @@ int printchar(va_list args_list)
  * @args_list: argument list
  * Return: bytes printed
  */
-int print_digits(va_list, args_list)
-{
-	int n, bytes_printed = 0;
-
-	n = va_arg(args_list, int);
-	
-	void print_number(int n)
-
-	unsigned int n1;
-
-	if (n < 0)
-	{
-		n1 = -n;
-		_putchar('-');
-	}
-	else
-	{
-		n1 = n;
-	}
-
-	if (n1 / 10)
-	{
-		print_number(n1 / 10);
-	}
-
-	_putchar((n1 % 10) + '0');
+int print_digits(va_list args_list) {
+    int n, bytes_printed = 0;
+    n = va_arg(args_list, int);
+    
+    void print_number(unsigned int n) {
+        if (n / 10) {
+            print_number(n / 10);
+        }
+        putchar((n % 10) + '0');
+    }
+    
+    unsigned int n1;
+    if (n < 0) {
+        n1 = -n;
+        putchar('-');
+        bytes_printed++;
+    } else {
+        n1 = n;
+    }
+    
+    print_number(n1);
+    while (n1 != 0) {
+        bytes_printed++;
+        n1 /= 10;
+    }
+    return bytes_printed;
 }
