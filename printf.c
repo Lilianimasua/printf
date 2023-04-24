@@ -13,10 +13,10 @@ int _printf(const char *format, ...)
 	int bytes_printed = 0;
 	char specifier;
 	char c;
-	va_list args, args_list; /* va_list args args_list*/
-	/*va_copy(args_list, args)*/
+	va_list args, args_list;
 
-	va_start(args_list, format);
+	va_start(args, format);
+
 	va_copy(args_list, args);
 
 	if (format == NULL)
