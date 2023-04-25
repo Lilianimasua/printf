@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int bytes_printed = 0, i = 0;
+	int bytes_printed = 0;
 	char specifier;
 	va_list args, args_list;
 
@@ -16,19 +16,19 @@ int _printf(const char *format, ...)
 
 	if (format == NULL || *format == '\0')
 		return (0);
-	while (format[i] != '\0')
+	while (*format != '\0')
 	{
-		if (format[i] == '%')
+		if (*format== '%')
 		{
-			i += 1;
-			specifier = format[i];
+			format++;
+			specifier = *format;
 			bytes_printed += handler(specifier, args_list);
 		} else
 		{
-			_putchar(format[i]);
+			_putchar(*(format));
 			bytes_printed++;
 		}
-		i++;
+		format++;
 	}
 	va_end(args);
 	va_end(args_list);
