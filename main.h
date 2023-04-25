@@ -5,8 +5,6 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-#define BUFFER_SIZE 64
-
 int _printf(const char *format, ...);
 int _putchar(char c);
 
