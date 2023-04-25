@@ -49,7 +49,7 @@ int print_char(va_list args_list)
 	int bytes_written = 0;
 	char c = va_arg(args_list, int);
 
-	if (!c)
+	if (c == '\0')
 		return (0);
 	_putchar(c);
 	bytes_written++;
