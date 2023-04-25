@@ -1,7 +1,4 @@
 #include "main.h"
-
-int specifier_handler(char, va_list);
-
 /**
  * _printf - prints a specified format
  * to standard output
@@ -10,85 +7,52 @@ int specifier_handler(char, va_list);
  */
 int _printf(const char *format, ...)
 {
-	int bytes_printed = 0;
-	char specifier;
-	char c;
-	va_list args, args_list;
+	const char *fptr = format, str;
+	int bytes_printed = 0, num;
+	char specifier, c;
+	va_list args;
 
-	va_start(args, format);
+	va_start(args, fptr);
 
-	va_copy(args_list, args);
-
-	if (format == NULL)
+	if (fptr == NULL || *fptr == '\0')
 		return (0);
-	while (*format != '\0')
+	while (*fptr != '\0')
 	{
-		if (*format == '%')
+		if (*fptr == '%')
 		{
-			format++;
-			specifier = *format;
-			bytes_printed
-				+=
-				specifier_handler(specifier, args_list);
-		} else
+			ftpr++;
+			specifier = *fptr;
+			if (specifier == 's')
+			{
+				str = va_arg(args, char*);
+				bytes_printed += print_string(str);
+			}
+			else if (specifier == 'd' || specifier == 'i')
+			{
+				num = va_arg(args, int);
+				bytes_printed += print_integer(num);
+			}
+			else if (specifier == 'c')
+			{
+				c = va_arg(args, char);
+				_putchar(c);
+				bytes_printed++;
+			}
+			else if (specifier == '%')
+			{
+				_putchar('%');
+				bytes_printed++;
+			}
+			else
+				break;
+		}
+		else
 		{
-			/*print the character as is*/
-			c = *format;
-			write(1, &c, 1);
+			_putchar(*ftpr);
 			bytes_printed++;
 		}
-		format++;
+		ftpr++;
 	}
-
 	va_end(args);
-	va_end(args_list);
-	return (bytes_printed);
-}
-
-/**
- * specifier_handler - handles the appropriate sepcifier
- * @specifier: The specifier
- * @args_list: The argument list
- * Return: bytes printed;
- */
-int specifier_handler(char specifier, va_list args_list)
-{
-	int bytes_printed = 0;
-	char c;
-
-	switch (specifier)
-	{
-		case '%':
-			{
-				c = '%';
-				write(1, &c, 1);
-				bytes_printed++;
-				break;
-			}
-		case 'c':
-			{
-				/*write logic goes here*/
-				bytes_printed += printchar(args_list);
-				break;
-			}
-		case 's':
-			{
-				/*write logic goes here*/
-				bytes_printed += print_string(args_list);
-				break;
-			}
-		case 'd':
-			{
-				bytes_printed += print_digits(args_list);
-				break;
-			}
-		case 'i':
-			{
-				bytes_printed += print_digits(args_list);
-				break;
-			}
-		default:
-			break;
-	}
-	return (bytes_printed);
+	return (bytes_written);
 }

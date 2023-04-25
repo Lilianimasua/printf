@@ -3,10 +3,18 @@
 
 #include <unistd.h>
 #include <stdarg.h>
+
+#define BUFFER_SIZE 64
+
 int _printf(const char *format, ...);
-int print_string(va_list);
-int printchar(va_list);
-int print_digits(va_list);
-int specifier_handler(char, va_list);
 int _putchar(char c);
+
+/*SPECIFIER PROTOTYPES*/
+int print_integer(int);
+int print_string(char*);
+
+/*STRING UTILITY PROTOTYPES*/
+int _strlen(char*);
+
+/*MEMORY UTILITY PROTOTYPE*/
 #endif
