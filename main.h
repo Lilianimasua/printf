@@ -6,6 +6,7 @@
 int _printf(const char *format, ...);
 int print_string(va_list);
 int printchar(va_list);
+int print_digits(va_list);
 int specifier_handler(char, va_list);
 int _putchar(char c);
 #endif

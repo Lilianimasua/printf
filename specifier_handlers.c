@@ -14,7 +14,7 @@ int print_string(va_list args_list)
 
 	for (i = 0; s[i]; i++)
 	{
-		write(1, &s[i], 1);
+		_putchar(s[i]);
 		bytes_printed++;
 	}
 	return (bytes_printed);
@@ -31,7 +31,7 @@ int printchar(va_list args_list)
 
 	char c = (char)va_arg(args_list, int);
 
-	write(1, &c, 1);
+	_putchar(c);
 	bytes_written++;
 	return (bytes_written);
 }
@@ -48,7 +48,13 @@ int print_digits(va_list args_list)
 
 	return (bytes_printed);
 }
-int print_number(int n) 
+
+/**
+ * print_number - recursively prints the number
+ * @n: the number to be printed
+ * Return: The bytes printed
+ */
+int print_number(int n)
 {
 	int bytes_printed = 0;
 	int m;
@@ -56,13 +62,13 @@ int print_number(int n)
 	if (n == 0)
 	{
 		n = n + '0';
-		write(1, &n, 1);
+		_putchar(n);
 		bytes_printed++;
 	}
 	if (n < 0)
 	{
 		m = -n;
-		write(1, '-', 1);
+		_putchar('-');
 		bytes_printed++;
 	}
 	else
@@ -71,9 +77,7 @@ int print_number(int n)
 	if (m / 10)
 		print_number(m / 10);
 	m = (m % 10) + '0';
-        write(1, ((m % 10) + '0'), 1);
-
+	_putchar(m);
 	bytes_printed++;
-
 	return (bytes_printed);
 }
