@@ -1,83 +1,66 @@
 #include "main.h"
 
-int print_number(int);
 /**
- * print_string - prints a char pointer
- * @args_list: argument list
- * Return: bytes printed
+ * print_string - prints string to about
+ * @str: the string to print
+ * Return: The number of bytes printed
+ *
  */
-int print_string(va_list args_list)
+int print_string(const char *str)
 {
-	int i, bytes_printed = 0;
-
-	char *s = va_arg(args_list, char*);
-
-	for (i = 0; s[i]; i++)
-	{
-		_putchar(s[i]);
-		bytes_printed++;
-	}
-	return (bytes_printed);
-}
-
-/**
- * printchar - prints a character
- * @args_list: argument lists
- * Return: bytes printed;
- */
-int printchar(va_list args_list)
-{
+	int len = _strlen(str);
 	int bytes_written = 0;
-
-	char c = (char)va_arg(args_list, int);
-
-	_putchar(c);
-	bytes_written++;
+	
+	for (int i = 0; i < len; i++)
+	{
+		_putchar(str[i]);
+		bytes_written++;
+	}
 	return (bytes_written);
 }
 
 /**
- * print_digits - prints digits
- * @args_list: argument list
- * Return: bytes printed
+ * print_integer - prints an integer to stddout
+ * @num: the integer to print
+ * Return: The number of bytes printed
  */
-int print_digits(va_list args_list)
+int print_integer(int num)
 {
-	int n = va_arg(args_list, int);
-	int bytes_printed = print_number(n);
+	int sign  = num < 0 ? -1 : 1;
+	int bytes_written = 0;
+	char *int_buffer;
+	int i = 0, j;
+	unsigned int u_num = sign * num;
 
-	return (bytes_printed);
-}
+	int_buffer = malloc(BUFFER_SIZE * sizeof(char));
 
-/**
- * print_number - recursively prints the number
- * @n: the number to be printed
- * Return: The bytes printed
- */
-int print_number(int n)
-{
-	int bytes_printed = 0;
-	int m;
+	if (int_buffer == NULL)
+		return(-1);
 
-	if (n == 0)
+	do {
+		int_buffer[i++] = (u_num % 10) + '0';
+
+		if (i == BUFFER_SIZE)
+		{
+			BUFFER_SIZE *= 2;
+			int_buffer = _realloc(in_buffer, BUFFER_SIZE*sizeof(char));
+
+			if (int_buffer == NULL)
+			{
+				free(int_buffer);
+				return (-1);
+			}
+		}
+	} while ((u_num /= 10) > 0);
+
+	if (sign < 0)
+		int_buffer[i++] = '-';
+	int_buffer[i] = '\0';
+
+	for (j = i - 1; j >= 0; j--)
 	{
-		n = n + '0';
-		_putchar(n);
-		bytes_printed++;
+		_putchar(int_buffer[j]);
+		bytes_written++;
 	}
-	if (n < 0)
-	{
-		m = -n;
-		_putchar('-');
-		bytes_printed++;
-	}
-	else
-		m = n;
-
-	if (m / 10)
-		print_number(m / 10);
-	m = (m % 10) + '0';
-	_putchar(m);
-	bytes_printed++;
-	return (bytes_printed);
+	return (bytes_written);
 }
