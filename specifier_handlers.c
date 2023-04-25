@@ -49,6 +49,8 @@ int print_char(va_list args_list)
 	int bytes_written = 0;
 	char c = va_arg(args_list, int);
 
+	if (!c)
+		return (0);
 	_putchar(c);
 	bytes_written++;
 	return (bytes_written);
@@ -63,7 +65,8 @@ int print_char(va_list args_list)
 int print_string(va_list args_list)
 {
 	char *str = va_arg(args_list, char*);
-
+	if (str == NULL || *str == '\0')
+		return(0);
 	int len = _strlen(str);
 	int bytes_written = 0, i;
 
