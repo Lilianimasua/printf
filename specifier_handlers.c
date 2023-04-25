@@ -67,15 +67,29 @@ int print_string(va_list args_list)
 	char *str = va_arg(args_list, char*);
 	int len;
 	int bytes_written = 0, i;
+	char *str_buffer;
 
-	if (str == NULL || *str == '\0' || _strlen(str) == 0)
-		return(0);
+	if (str == NULL || *str == '\0')
+		return (0);
+
 	len = _strlen(str);
+
+	str_buffer = malloc((len + 1) * sizeof(char));
+
+	if (str_buffer == NULL)
+		return (0);
 	for (i = 0; i < len; i++)
 	{
-		_putchar(str[i]);
+		str_buffer[i] = str[i];
+	}
+	str_buffer[i] = '\0';
+
+	for (i = 0; i < len; i++)
+	{
+		_putchar(str_buffer[i]);
 		bytes_written++;
 	}
+	free(str_buffer);
 	return (bytes_written);
 }
 

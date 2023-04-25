@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 		return (0);
 	while (*format != '\0')
 	{
-		if (*format== '%')
+		if (*format == '%')
 		{
 			format++;
 			specifier = *format;
