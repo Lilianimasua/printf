@@ -1,5 +1,6 @@
 #include "main.h"
 
+int print_number(int);
 /**
  * print_string - prints a char pointer
  * @args_list: argument list
@@ -40,30 +41,39 @@ int printchar(va_list args_list)
  * @args_list: argument list
  * Return: bytes printed
  */
-int print_digits(va_list args_list) {
-    int n, bytes_printed = 0;
-    n = va_arg(args_list, int);
-    
-    void print_number(unsigned int n) {
-        if (n / 10) {
-            print_number(n / 10);
-        }
-        putchar((n % 10) + '0');
-    }
-    
-    unsigned int n1;
-    if (n < 0) {
-        n1 = -n;
-        putchar('-');
-        bytes_printed++;
-    } else {
-        n1 = n;
-    }
-    
-    print_number(n1);
-    while (n1 != 0) {
-        bytes_printed++;
-        n1 /= 10;
-    }
-    return bytes_printed;
+int print_digits(va_list args_list)
+{
+	int n = va_arg(args_list, int);
+	int bytes_printed = print_number(n);
+
+	return (bytes_printed);
+}
+int print_number(int n) 
+{
+	int bytes_printed = 0;
+	int m;
+
+	if (n == 0)
+	{
+		n = n + '0';
+		write(1, &n, 1);
+		bytes_printed++;
+	}
+	if (n < 0)
+	{
+		m = -n;
+		write(1, '-', 1);
+		bytes_printed++;
+	}
+	else
+		m = n;
+
+	if (m / 10)
+		print_number(m / 10);
+	m = (m % 10) + '0';
+        write(1, ((m % 10) + '0'), 1);
+
+	bytes_printed++;
+
+	return (bytes_printed);
 }

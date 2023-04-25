@@ -77,6 +77,16 @@ int specifier_handler(char specifier, va_list args_list)
 				bytes_printed += print_string(args_list);
 				break;
 			}
+		case 'd':
+			{
+				bytes_printed += print_digits(args_list);
+				break;
+			}
+		case 'i':
+			{
+				bytes_printed += print_digits(args_list);
+				break;
+			}
 		default:
 			break;
 	}
