@@ -9,7 +9,7 @@ int _strlen(char *str)
 	int len = 0;
 
 	if (str == NULL || *str == '\0')
-		return (-1);
+		return (0);
 	while (str[len] != '\0')
 	{
 		len++;
@@ -41,7 +41,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (new_size == 0 && ptr != NULL)
 	{
 		free(ptr);
-		return (NULL);
+		return (0);
 	}
 	if (new_size > old_size)
 		end = old_size;

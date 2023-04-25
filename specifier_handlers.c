@@ -86,32 +86,31 @@ int print_integer(va_list args_list)
 	int sign  = num < 0 ? -1 : 1;
 	int bytes_written = 0;
 	char *int_buffer;
-	int i = 0, j;
+	int i = 0, j, buffer_size = 64;
 	unsigned int u_num = sign * num;
 
-	int_buffer = malloc(BUFFER_SIZE * sizeof(char));
+	int_buffer = malloc(buffer_size * sizeof(char));
 
 	if (int_buffer == NULL)
-		return (-1);
+		return (0);
 
 	do {
 		int_buffer[i++] = (u_num % 10) + '0';
 
-		if (i == BUFFER_SIZE)
+		if (i == buffer_size)
 		{
 			int_buffer = _realloc(int_buffer,
-					(BUFFER_SIZE * sizeof(char)),
-					(2 * BUFFER_SIZE * sizeof(char))
+					(buffer_size * sizeof(char)),
+					(2 * buffer_size * sizeof(char))
 					);
 
 			if (int_buffer == NULL)
 			{
 				free(int_buffer);
-				return (-1);
+				return (0);
 			}
 		}
 	} while ((u_num /= 10) > 0);
-
 	if (sign < 0)
 		int_buffer[i++] = '-';
 	int_buffer[i] = '\0';
@@ -121,5 +120,6 @@ int print_integer(va_list args_list)
 		_putchar(int_buffer[j]);
 		bytes_written++;
 	}
+	free(int_buffer);
 	return (bytes_written);
 }
