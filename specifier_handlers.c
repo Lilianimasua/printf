@@ -96,20 +96,6 @@ int print_integer(va_list args_list)
 
 	do {
 		int_buffer[i++] = (u_num % 10) + '0';
-
-		if (i == buffer_size)
-		{
-			int_buffer = _realloc(int_buffer,
-					(buffer_size * sizeof(char)),
-					(2 * buffer_size * sizeof(char))
-					);
-
-			if (int_buffer == NULL)
-			{
-				free(int_buffer);
-				return (0);
-			}
-		}
 	} while ((u_num /= 10) > 0);
 	if (sign < 0)
 		int_buffer[i++] = '-';
