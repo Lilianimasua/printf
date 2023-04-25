@@ -28,14 +28,12 @@ int handler(char c, va_list args_list)
 				bytes_printed += print_char(args_list);
 				break;
 			}
-		case '%':
+		default:
 			{
 				_putchar('%');
-				bytes_printed++;
-				break;
+				_putchar(c);
+				bytes_printed += 2;
 			}
-		default:
-			break;
 	}
 	return (bytes_printed);
 }

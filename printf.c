@@ -22,7 +22,12 @@ int _printf(const char *format, ...)
 		{
 			format++;
 			specifier = *format;
-			bytes_printed += handler(specifier, args_list);
+			if (specifier == '%')
+			{
+				_putchar(specifier);
+				bytes_printed++;
+			} else
+				bytes_printed += handler(specifier, args_list);
 		} else
 		{
 			_putchar(*(format));
