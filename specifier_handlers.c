@@ -65,11 +65,12 @@ int print_char(va_list args_list)
 int print_string(va_list args_list)
 {
 	char *str = va_arg(args_list, char*);
-	if (str == NULL || *str == '\0')
-		return(0);
-	int len = _strlen(str);
+	int len;
 	int bytes_written = 0, i;
 
+	if (str == NULL || *str == '\0' || _strlen(str) == 0)
+		return(0);
+	len = _strlen(str);
 	for (i = 0; i < len; i++)
 	{
 		_putchar(str[i]);
