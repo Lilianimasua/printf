@@ -27,4 +27,5 @@ int print_octal(va_list list);
 int print_hex(va_list list);
 int print_HEX(va_list list);
 int print_addrs(va_list list);
+int (*get_print(const char *format))(va_list, int);
 #endif
