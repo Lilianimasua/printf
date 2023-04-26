@@ -4,6 +4,7 @@
  * @str: pointer to string
  * Return: length of string
  */
+int to_base_n(unsigned long num, int base, char buffer[])
 int _strlen(char *str)
 {
 	int len = 0;
