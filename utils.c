@@ -56,7 +56,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 }
 
 /**
- * to_base - changes a number to a specific base
+ * to_base_n - changes a number to a specific base
  * @num: the number to convert
  * @base: the base to convert to
  * @buffer: The character that will hold the resulting string

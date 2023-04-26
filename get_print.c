@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * get_print - func to return a pointer to the appropriate print func.
- * @format: format of the argument to be printed
+ * @specifier: format of the argument to be printed
  * Return: pointer to the appropriate print func, OR NULL if no match is found.
  */
 int (*get_print(const char *specifier))(va_list)

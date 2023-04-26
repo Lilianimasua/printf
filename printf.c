@@ -24,8 +24,9 @@ int _printf(const char *format, ...)
 			if (*format == '\0')
 				return (-1);
 			pfn = get_print(format);
-			printed += pfn ? 
-				pfn(args_list) : _putchar ('%') + _putchar(*format);
+			printed +=
+				pfn ? pfn(args_list) : _putchar ('%') +
+				_putchar(*format);
 		} else
 		{
 			printed += _putchar(*(format));
