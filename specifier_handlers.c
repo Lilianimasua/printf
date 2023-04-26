@@ -1,42 +1,4 @@
 #include "main.h"
-
-/**
- * handler - handles the specifier
- * @c: specifier
- * @args_list: argument_list
- * Return: Number of bytes printed
- */
-int handler(char c, va_list args_list)
-{
-	int bytes_printed = 0;
-
-	switch (c)
-	{
-		case 's':
-			{
-				bytes_printed += print_string(args_list);
-				break;
-			}
-		case 'd':
-		case 'i':
-			{
-				bytes_printed += print_integer(args_list);
-				break;
-			}
-		case 'c':
-			{
-				bytes_printed += print_char(args_list);
-				break;
-			}
-		default:
-			{
-				_putchar('%');
-				_putchar(c);
-				bytes_printed += 2;
-			}
-	}
-	return (bytes_printed);
-}
 /**
  * print_char - prints a character
  * @args_list: argument list
@@ -124,4 +86,16 @@ int print_integer(va_list args_list)
 	}
 	free(int_buffer);
 	return (bytes_written);
+}
+
+/**
+ * print_perc - prints a percent sign.
+ * @list: arglist (unused)
+ * Return: count of characters
+ */
+int print_perc(va_list list)
+{
+	(void)(list);
+	_putchar('%');
+	return (1);
 }

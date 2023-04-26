@@ -7,35 +7,32 @@
  */
 int _printf(const char *format, ...)
 {
-	int bytes_printed = 0;
-	char specifier;
+	int printed = 0;
 	va_list args, args_list;
+	int (*pfn)(va_list);
 
 	va_start(args, format);
 	va_copy(args_list, args);
 
 	if (format == NULL || *format == '\0')
-		return (0);
+		return (-1);
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
 			format++;
-			specifier = *format;
-			if (specifier == '%')
-			{
-				_putchar(specifier);
-				bytes_printed++;
-			} else
-				bytes_printed += handler(specifier, args_list);
+			if (*format == '\0')
+				return (-1);
+			pfn = get_print(format);
+			printed += pfn ? 
+				pfn(args_list) : _putchar ('%') + _putchar(*format);
 		} else
 		{
-			_putchar(*(format));
-			bytes_printed++;
+			printed += _putchar(*(format));
 		}
 		format++;
 	}
 	va_end(args);
 	va_end(args_list);
-	return (bytes_printed);
+	return (printed);
 }
