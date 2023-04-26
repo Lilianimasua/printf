@@ -8,12 +8,10 @@ int _strlen(char *str)
 {
 	int len = 0;
 
-	if (str == NULL || *str == '\0')
+	if (str == NULL)
 		return (0);
 	while (str[len] != '\0')
-	{
 		len++;
-	}
 	return (len);
 }
 /**
